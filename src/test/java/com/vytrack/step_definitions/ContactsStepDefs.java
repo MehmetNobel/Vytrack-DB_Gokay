@@ -92,12 +92,14 @@ public class ContactsStepDefs {
         String query= "select concat(first_name,' ',last_name) \"full_name\", e.email \n" +
                 "from orocrm_contact c inner join orocrm_contact_email e \n" +
                 "on c.id = e.owner_id \n" +
-                "where e.email = 'cherrylarmstrong@yahoo.com'";
+                "where e.email = 'mrjakc@mail.ru'";
 
         //create the connection to qa3 env
        // DBUtils.createConnection();
         //get the data in java collections
         Map<String, Object> rowMap = DBUtils.getRowMap(query);
+
+        System.out.println("rowMap = " + rowMap);
         String expectedFullname = (String) rowMap.get("full_name");
         String expectedEmail = (String) rowMap.get("email");
 
