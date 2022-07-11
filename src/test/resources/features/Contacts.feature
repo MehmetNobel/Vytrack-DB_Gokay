@@ -68,12 +68,20 @@ Feature: Contacts page
       When the user clicks the "mrjakc@mail.ru" from contacts
       Then the information should be same with database
 
+
    @db @wip
    Scenario: Contact test with email
     Given the user logged in as "sales manager"
     And the user navigates to "Customers" "Contacts"
     When the user clicks the "jakop@gmail.com" from contacts
     Then the information for "jakop@gmail.com" should be same with database
+
+   @db @wipmehmet
+   Scenario: Contact test with email
+    Given the user logged in as "sales manager"
+    And the user navigates to "Customers" "Contacts"
+    When the user clicks the Create Contact Button and enters "esadd" and "nasill"
+    Then the inf. for "nasill" should be same with database
 
    @db
   Scenario Outline: Contact test with email

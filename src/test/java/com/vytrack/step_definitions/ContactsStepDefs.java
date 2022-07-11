@@ -150,6 +150,49 @@ public class ContactsStepDefs {
     }
 
 
+    @When("the user clicks the Create Contact Button and enters {string} and {string}")
+    public void theUserClicksTheCreateContactButtonAndEntersAnd(String arg0, String arg1) {
+        ContactsPage contactsPage=new ContactsPage();
+
+        BrowserUtils.waitFor(2);
+
+        contactsPage.createContactButton.click();
+
+        contactsPage.nameInputBox.sendKeys(arg0);
+
+        contactsPage.lastnameInputBox.sendKeys(arg1);
+
+        BrowserUtils.waitFor(3);
+
+        contactsPage.saveButton.click();
 
 
+
+    }
+
+    @Then("the inf. for {string} should be same with database")
+    public void theInfForShouldBeSameWithDatabase(String lastname) {
+
+        ContactsPage contactsPage=new ContactsPage();
+
+        //String expected=contactsPage.saveButton.getText();
+        String expected=lastname;
+
+        String query="select last_name from orocrm_contact\n" +
+                "where last_name='"+lastname+"'";
+
+        Map<String, Object> rowMap = DBUtils.getRowMap(query);
+
+        System.out.println("rowMap = " + rowMap);
+
+        String actuallast_name = rowMap.get("last_name").toString();
+
+        System.out.println("actuallast_name = " + actuallast_name);
+
+        //Assert.assertEquals(expected,actuallast_name);
+
+
+
+
+    }
 }
